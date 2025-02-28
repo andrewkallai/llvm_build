@@ -30,10 +30,6 @@ cmake ${SRC}/llvm-project/llvm -G Ninja \
   -DCMAKE_INSTALL_PREFIX=${INSTALL} \
   -DCMAKE_C_COMPILER=gcc \
   -DCMAKE_CXX_COMPILER=g++ \
-#  -DCMAKE_CXX_USING_LINKER_MODE="-fuse-ld=lld" \
-  -DCMAKE_LINKER_TYPE=LLD \
-#  -DCMAKE_CXX_FLAGS="-fuse-ld=lld" \
-#  -DLLVM_USE_LINKER=lld \
   -DLLVM_ENABLE_PROJECTS=${LLVM_PROJECTS} \
   -DLLVM_ENABLE_ASSERTIONS=ON \
   -DLLVM_OPTIMIZED_TABLEGEN=ON \
@@ -41,7 +37,11 @@ cmake ${SRC}/llvm-project/llvm -G Ninja \
   -DLLVM_CCACHE_BUILD=OFF \
   -DLLVM_APPEND_VC_REV=OFF \
   -DLLVM_ENABLE_RUNTIMES="libcxx;libcxxabi;libunwind" \
-  -DLLVM_ENABLE_LIBCXX=ON \
+#  -DCMAKE_CXX_USING_LINKER_MODE="-fuse-ld=lld" \
+#  -DCMAKE_LINKER_TYPE=LLD \
+#  -DCMAKE_CXX_FLAGS="-fuse-ld=lld" \
+#  -DLLVM_USE_LINKER=lld \
+#  -DLLVM_ENABLE_LIBCXX=ON \
 
 
   #-DINSTALL_PARALLEL=ON
@@ -52,10 +52,10 @@ cmake --build . --target install
 
 #./bin/llvm-lit -v test/tools/input-gen/
 
-if [ $? -eq 0 ]; then
+#if [ $? -eq 0 ]; then
   #cd ..
   #rm -r llvm_build_tmp
-fi
+#fi
 #  -DCMAKE_INSTALL_PREFIX=${SRC}llvm_19.x \
 
 #  -DCMAKE_C_COMPILER=clang \

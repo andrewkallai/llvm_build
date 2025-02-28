@@ -9,9 +9,12 @@ export PATH="$HOME/cmake-3.30.0-linux-x86_64/bin:$PATH"
 #export LD_LIBRARY_PATH="/lustre/schandra_crpl/sw/LLVM/previous_llvm_install/lib:$LD_LIBRARY_PATH"
 
 vpkg_require ninja
-vpkg_require llvm/17.0.6
+#vpkg_require llvm/17.0.6
+vpkg_require gcc/12.2.0
 vpkg_require python/3.8.6
-
+export PATH="/home/3302/llvm-libcxx-install/bin:$PATH"
+export LD_LIBRARY_PATH="/home/3302/llvm-libcxx-install/lib:$LD_LIBRARY_PATH"
+#export LIBRARY_PATH="/home/3302/llvm-libcxx-install/lib:$LIBRARY_PATH"
 
 SRC=/lustre/schandra_crpl/sw/LLVM/llvm-ml
 INSTALL=$HOME/llvm-input-gen-install
@@ -30,10 +33,8 @@ cmake ${SRC}/llvm-project/llvm -G Ninja \
   -DCMAKE_INSTALL_PREFIX=${INSTALL} \
   -DCMAKE_C_COMPILER=clang \
   -DCMAKE_CXX_COMPILER=clang++ \
-  -DCMAKE_CXX_USING_LINKER_MODE="-fuse-ld=lld" \
-  -DCMAKE_LINKER_TYPE=LLD \
-#  -DCMAKE_CXX_FLAGS="-fuse-ld=lld" \
-#  -DLLVM_USE_LINKER=lld \
+  -DCMAKE_CXX_USING_LINKER_lld="-fuse-ld=lld" \
+  -DCMAKE_LINKER_TYPE=lld \
   -DLLVM_ENABLE_PROJECTS=${LLVM_PROJECTS} \
   -DLLVM_ENABLE_ASSERTIONS=ON \
   -DLLVM_OPTIMIZED_TABLEGEN=ON \
@@ -43,6 +44,8 @@ cmake ${SRC}/llvm-project/llvm -G Ninja \
   -DLLVM_ENABLE_RUNTIMES="libcxx;libcxxabi;libunwind" \
   -DLLVM_ENABLE_LIBCXX=ON \
 
+#  -DCMAKE_CXX_FLAGS="-fuse-ld=lld" \
+#  -DLLVM_USE_LINKER=lld \
 
   #-DINSTALL_PARALLEL=ON
 
