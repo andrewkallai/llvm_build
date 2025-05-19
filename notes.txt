@@ -1,0 +1,4 @@
+
+PYTORCH_PATH="/home/users/andrewka/grace_hopper/sw/PyTorch/pytorch-v2.7.0/torch"
+#CMAKE_BUILD_PARALLEL_LEVEL=65 uv build --wheel -Cbuild-dir=build -Ccmake.define.CMAKE_PREFIX_PATH="$PYTORCH_PATH" -Ccmake.define.SGL_KERNEL_ENABLE_SM90A="ON" --color=always --verbose .
+
