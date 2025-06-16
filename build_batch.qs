@@ -20,7 +20,7 @@
 # [EDIT] Indicate the number of processor cores/threads to be used
 #        by the job:
 #
-#SBATCH --cpus-per-task=4
+#SBATCH --cpus-per-task=84
 #
 # [EDIT] All jobs have memory limits imposed.  The default is 1 GB per
 #        CPU allocated to the job.  The default can be overridden either
@@ -56,7 +56,7 @@
 #        PLEASE NOTE:  On DARWIN every job is **required** to include the
 #                      --partition flag in its submission!
 #
-#SBATCH --partition=standard
+#SBATCH --partition=illyad
 # [EDIT] Jobs that will run in one of the GPU partitions can request GPU
 #        resources using ONE of the following flags:
 #
@@ -88,7 +88,7 @@
 #        Jobs default to the default runtime limit of the chosen partition
 #        if this option is omitted.
 #
-#SBATCH --time=0-04:00:00
+#SBATCH --time=0-08:00:00
 #
 #        You can also provide a minimum acceptable runtime so the scheduler
 #        may be able to run your job sooner.  If you do not provide a
@@ -185,5 +185,9 @@
 #
 
 #srun ./darwin_build.sh
-srun ./darwin_input-gen_build.sh
-#srun ./darwin_libcxx_build.sh
+#srun ./darwin_input-gen_build.sh
+#srun ./gilgamesh_build_regular.sh
+#srun ./proper_build.sh
+#srun ./other_proper.sh
+srun ./gilgamesh_build_input_update_gen.sh
+#srun ./gilgamesh_build_libcxx.sh
