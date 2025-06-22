@@ -4,20 +4,20 @@
 set -x
 set -e
 
-export PATH="$HOME/llvm-libcxx-install/bin:$HOME/sw/python/Python-3.12.10_install/bin:$HOME/cmake/cmake-4.0.1-linux-x86_64/bin:$HOME/ninja-linux/:$PATH"
-export LD_LIBRARY_PATH="$HOME/llvm-libcxx-install/lib/x86_64-unknown-linux-gnu:$HOME/sw/python/Python-3.12.10_install/lib:$LD_LIBRARY_PATH"
+export PATH="$HOME/llvm-clang_lld_standalone-install/bin:$HOME/sw/python/Python-3.12.10_install/bin:$HOME/cmake/cmake-4.0.1-linux-x86_64/bin:$HOME/ninja-linux/:$PATH"
+export LD_LIBRARY_PATH="$HOME/llvm-clang_lld_standalone-install/lib:$HOME/llvm-libcxx-install/lib/x86_64-unknown-linux-gnu:$HOME/sw/python/Python-3.12.10_install/lib:$LD_LIBRARY_PATH"
 
 SRC=/home/users/andrewka
-INSTALL=$HOME/llvm-clang_lld_standalone-install
+INSTALL=$HOME/llvm-compiler-rt-ig-install
 
-LLVM_PROJECTS="clang;lld"
-LLVM_RUNTIMES=""
+LLVM_PROJECTS=""
+LLVM_RUNTIMES="compiler-rt"
 
 mkdir -p $INSTALL
 cd $HOME
-mkdir -p llvm_build_cldi
+mkdir -p llvm_build_crt
 
-cd $HOME/llvm_build_cldi
+cd $HOME/llvm_build_crt
 
 cmake -D CMAKE_BUILD_TYPE=Release \
   -D CMAKE_INSTALL_PREFIX=${INSTALL} \
@@ -35,9 +35,9 @@ cmake -D CMAKE_BUILD_TYPE=Release \
   -D LLVM_APPEND_VC_REV=ON \
   -D LLVM_TARGETS_TO_BUILD="host" \
   -D LLVM_TARGET_ARCH="host" \
-  -G Ninja ${SRC}/LLVM_forks/input-gen-llvm-project/llvm
+  -G Ninja ${SRC}/LLVM_forks/input-gen-llvm-project/compiler-rt
 
-cmake --build . #--clean-first
+cmake --build . --clean-first
 cmake --build . --target install
 
 ./bin/llvm-lit -v test

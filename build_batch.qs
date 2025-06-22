@@ -189,5 +189,6 @@
 #srun ./gilgamesh_build_regular.sh
 #srun ./proper_build.sh
 #srun ./other_proper.sh
-srun ./gilgamesh_build_input_update_gen.sh
+#srun ./gilgamesh_build_input_update_gen.sh
+srun ./gilgamesh_build_compiler-rt_ig.sh
 #srun ./gilgamesh_build_libcxx.sh
