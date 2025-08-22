@@ -10,7 +10,7 @@ export LD_LIBRARY_PATH="$HOME/llvm-libcxx-install/lib/x86_64-unknown-linux-gnu:$
 SRC=/home/users/andrewka
 INSTALL=$HOME/llvm-clang_lld_standalone-install
 
-LLVM_PROJECTS="clang;lld"
+LLVM_PROJECTS="clang;lld;lldb"
 LLVM_RUNTIMES=""
 
 mkdir -p $INSTALL

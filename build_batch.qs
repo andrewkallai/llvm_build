@@ -56,7 +56,7 @@
 #        PLEASE NOTE:  On DARWIN every job is **required** to include the
 #                      --partition flag in its submission!
 #
-#SBATCH --partition=illyad
+#SBATCH --partition=lizard
 # [EDIT] Jobs that will run in one of the GPU partitions can request GPU
 #        resources using ONE of the following flags:
 #
@@ -190,5 +190,6 @@
 #srun ./proper_build.sh
 #srun ./other_proper.sh
 #srun ./gilgamesh_build_input_update_gen.sh
-srun ./gilgamesh_build_compiler-rt_ig.sh
+#srun ./gilgamesh_build_compiler-rt_ig.sh
 #srun ./gilgamesh_build_libcxx.sh
+srun gilgamesh_openmp_offloading_build.sh
