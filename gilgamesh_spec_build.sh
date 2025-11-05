@@ -12,17 +12,19 @@ export LD_LIBRARY_PATH="/home/users/andrewka/sw/python/Python-3.12.10_install/li
 
 #module load gcc/13.2
 #module load gcc/14.0.1
-module load llvm/18.1.8 
+module load /packages/Modules/modulefiles/llvm/18.1.8
 #module load cuda/12.5
 
 #SRC=/home/users/andrewka/new_llvm
 SRC=/home/users/andrewka/LLVM_clones
-INSTALL=$HOME/LLVM_installs/llvm-complete-offloading-install
-BUILD=$HOME/LLVM_builds/llvm_for_offload-complete_build
+INSTALL=$HOME/LLVM_installs/llvm-spec-install
+BUILD=$HOME/LLVM_builds/llvm_for_spec_build
 
-LLVM_PROJECTS="clang;lld;mlir;flang;lldb"
-LLVM_RUNTIMES="compiler-rt;flang-rt;openmp;offload"
-TARGETS="X86;NVPTX;AMDGPU"
+#LLVM_PROJECTS="clang;lld;mlir;flang"
+LLVM_PROJECTS="clang;lld"
+#LLVM_RUNTIMES="compiler-rt;flang-rt;openmp;offload"
+LLVM_RUNTIMES="openmp;offload"
+TARGETS="X86;NVPTX"
 
 mkdir -p $INSTALL
 mkdir -p $BUILD
@@ -39,11 +41,8 @@ cmake -D CMAKE_BUILD_TYPE=Release \
   -D LLVM_CCACHE_BUILD=ON \
   -D LLVM_ENABLE_RUNTIMES=${LLVM_RUNTIMES} \
   -D LLVM_TARGETS_TO_BUILD=${TARGETS} \
-  -D RUNTIMES_nvptx64-nvidia-cuda_LLVM_ENABLE_RUNTIMES=openmp \
-  -D RUNTIMES_amdgcn-amd-amdhsa_LLVM_ENABLE_RUNTIMES=openmp \
-  -D LLVM_RUNTIME_TARGETS="default;amdgcn-amd-amdhsa;nvptx64-nvidia-cuda" \
   -D LLVM_APPEND_VC_REV=ON \
-  -G Ninja ${SRC}/llvm-project/llvm
+  -G Ninja ${SRC}/llvm-project-spec/llvm
 
   #-D LLVM_ENABLE_LIBPFM=OFF \
   #-D LIBOMPTARGET_PLUGINS_TO_BUILD="cuda;host" \

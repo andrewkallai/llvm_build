@@ -56,7 +56,7 @@
 #        PLEASE NOTE:  On DARWIN every job is **required** to include the
 #                      --partition flag in its submission!
 #
-#SBATCH --partition=lizard
+#SBATCH --partition=gilgamesh
 # [EDIT] Jobs that will run in one of the GPU partitions can request GPU
 #        resources using ONE of the following flags:
 #
