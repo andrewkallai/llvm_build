@@ -26,9 +26,11 @@ SRC=$PREFIX/LLVM
 INSTALL=$HOME/LLVM_installs/llvm-complete-offloading-install
 BUILD=$HOME/LLVM_builds/llvm_for_offload-complete_build
 
-LLVM_PROJECTS="clang;lld;mlir;flang;lldb"
+LLVM_PROJECTS="clang;lld;mlir;flang"
+#;lldb"
 LLVM_RUNTIMES="compiler-rt;flang-rt;openmp;offload"
-TARGETS="X86;NVPTX;AMDGPU"
+TARGETS="X86;NVPTX"
+#;AMDGPU"
 
 mkdir -p $INSTALL
 mkdir -p $BUILD
@@ -41,16 +43,17 @@ cmake -D CMAKE_BUILD_TYPE=Release \
   -D LLVM_ENABLE_PROJECTS=${LLVM_PROJECTS} \
   -D LLVM_ENABLE_ASSERTIONS=ON \
   -D LLVM_OPTIMIZED_TABLEGEN=ON \
+  -D LLVM_CCACHE_BUILD=OFF \
   -D BUILD_SHARED_LIBS=ON \
-  -D LLVM_CCACHE_BUILD=ON \
   -D LLVM_ENABLE_RUNTIMES=${LLVM_RUNTIMES} \
   -D LLVM_TARGETS_TO_BUILD=${TARGETS} \
   -D RUNTIMES_nvptx64-nvidia-cuda_LLVM_ENABLE_RUNTIMES=openmp \
-  -D RUNTIMES_amdgcn-amd-amdhsa_LLVM_ENABLE_RUNTIMES=openmp \
-  -D LLVM_RUNTIME_TARGETS="default;amdgcn-amd-amdhsa;nvptx64-nvidia-cuda" \
+  -D LLVM_RUNTIME_TARGETS="default;nvptx64-nvidia-cuda" \
   -D LLVM_APPEND_VC_REV=ON \
   -G Ninja ${SRC}/llvm-project/llvm
 
+#;amdgcn-amd-amdhsa
+#  -D RUNTIMES_amdgcn-amd-amdhsa_LLVM_ENABLE_RUNTIMES=openmp \
   #-D LLVM_ENABLE_LIBPFM=OFF \
   #-D LIBOMPTARGET_PLUGINS_TO_BUILD="cuda;host" \
 
