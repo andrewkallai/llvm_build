@@ -4,11 +4,11 @@ set -e
 set -u
 set -x
 
-module load gcc/13.2
+module load gcc/16.1.0
 
-GCC_VERSION="15.2.0"
-BUILD_ID="${GCC_VERSION}-20251116"
-CUDA_VERSION="12.8.1"
+GCC_VERSION="16.2.0"
+BUILD_ID="${GCC_VERSION}-20261112"
+CUDA_VERSION="13.2.0"
 JOBS=48
 
 PREFIX="${HOME}/sw/gcc/gcc-install-${BUILD_ID}"
@@ -18,15 +18,15 @@ BUILD_PATH="${WORKSPACE_PATH}/build"
 
 PKG_NAME="gcc-${GCC_VERSION}"
 SRC_NAME="gcc-${GCC_VERSION}.tar.xz"
-BINUTILS_PATH=${HOME}/sw/Binutils/binutils-2.45
+BINUTILS_PATH=${HOME}/sw/Binutils/binutils-2.47
 export PATH="${BINUTILS_PATH}_install/bin:$PATH"
 export LD_LIBRARY_PATH="${BINUTILS_PATH}_install/lib:$LD_LIBRARY_PATH"
 
 mkdir -p ${BINUTILS_PATH}
 cd ${BINUTILS_PATH}/..
-wget https://ftp.gnu.org/gnu/binutils/binutils-2.45.tar.gz
-tar --extract --file=binutils-2.45.tar.gz
-cd binutils-2.45
+wget https://ftp.gnu.org/gnu/binutils/binutils-2.47.tar.gz
+tar --extract --file=binutils-2.47.tar.gz
+cd binutils-2.47
 ./configure --prefix=${BINUTILS_PATH}_install
 make -j ${JOBS}
 make install
