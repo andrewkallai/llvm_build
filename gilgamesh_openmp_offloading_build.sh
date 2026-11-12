@@ -13,6 +13,7 @@ export LD_LIBRARY_PATH="/home/users/andrewka/sw/python/Python-3.12.10_install/li
 #module load gcc/13.2
 #module load gcc/14.0.1
 module load llvm/18.1.8 
+module load valgrind4hpc/2.13.6
 #module load cuda/12.5
 
 #SRC=/home/users/andrewka/new_llvm
@@ -51,3 +52,4 @@ cmake -D CMAKE_BUILD_TYPE=Release \
 cmake --build . --target install
 
 ./bin/llvm-lit -v test
+

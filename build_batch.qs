@@ -20,7 +20,9 @@
 # [EDIT] Indicate the number of processor cores/threads to be used
 #        by the job:
 #
-#SBATCH --cpus-per-task=84
+# SBATCH --cpus-per-task=84
+# SBATCH --cpus-per-task=64
+#SBATCH --cpus-per-task=48
 #
 # [EDIT] All jobs have memory limits imposed.  The default is 1 GB per
 #        CPU allocated to the job.  The default can be overridden either
@@ -56,7 +58,9 @@
 #        PLEASE NOTE:  On DARWIN every job is **required** to include the
 #                      --partition flag in its submission!
 #
-#SBATCH --partition=gilgamesh
+# SBATCH --partition=gilgamesh
+#SBATCH --partition=lizard
+#SBATCH --nodelist=voltar
 # [EDIT] Jobs that will run in one of the GPU partitions can request GPU
 #        resources using ONE of the following flags:
 #
@@ -192,4 +196,5 @@
 #srun ./gilgamesh_build_input_update_gen.sh
 #srun ./gilgamesh_build_compiler-rt_ig.sh
 #srun ./gilgamesh_build_libcxx.sh
-srun gilgamesh_openmp_offloading_build.sh
+#srun gilgamesh_openmp_offloading_build.sh
+srun general_openmp_offloading_build.sh
